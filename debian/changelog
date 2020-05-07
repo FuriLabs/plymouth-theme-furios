@@ -1,5 +1,5 @@
-plymouth-theme-librem5 (1.0) amber-phone; urgency=medium
+mobian-plymouth-theme (1.0) unstable; urgency=medium
 
   * Initial commit.
 
- -- Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>  Tue, 14 Jan 2020 19:49:28 +0100
+ -- Arnaud Ferraris <arnaud.ferraris@gmail.com>  Thu, 07 May 2020 15:40:36 +0200
