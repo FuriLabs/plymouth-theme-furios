@@ -1,7 +1,7 @@
 # Positions
 
 logo_h_alignment        = 0.5;
-logo_v_alignment        = 0.48;
+logo_v_alignment        = 0.5;
 
 logo_fade_delay         = 0;
 logo_fade_duration      = 20;
@@ -13,7 +13,7 @@ progress_fade_delay      = 20;
 progress_fade_duration   = 20;
 
 spinner_h_alignment     = 0.5;
-spinner_v_alignment     = 0.6;
+spinner_v_alignment     = 0.75;
 
 spinner_fade_delay      = 20;
 spinner_fade_duration   = 20;
@@ -21,14 +21,21 @@ spinner_fade_duration   = 20;
 spinner_max_opacity     = 0.3;
 
 message_h_alignment     = 0.5;
-message_v_alignment     = 0.8;
+message_v_alignment     = 0.9;
 message_font_size       = 18; # In pixels
 
 
 
 #----------------------------------------- Logo --------------------------------
 
-logo.image = Image("logo.png");
+unscaled_logo = Image("logo.png");
+
+window_max.width = Window.GetX() * 2 + Window.GetWidth();
+window_max.height = Window.GetY() * 2 + Window.GetHeight();
+logo_scale_factor = window_max.width / unscaled_logo.GetWidth();
+
+logo.image = unscaled_logo.Scale(unscaled_logo.GetWidth() * logo_scale_factor,
+                                 unscaled_logo.GetHeight() * logo_scale_factor);
 logo.sprite = Sprite(logo.image);
 
 logo.sprite.SetX( Window.GetWidth() * logo_h_alignment -    logo.image.GetWidth()  / 2);
@@ -102,7 +109,7 @@ fun refresh_callback ()
     progress++;
     refresh_spinner();
   }
-  
+
 Plymouth.SetRefreshFunction (refresh_callback);
 
 
@@ -116,36 +123,36 @@ fun dialog_setup()
     local.box;
     local.lock;
     local.entry;
-    
+
     box.image = Image("box.png");
     lock.image = Image("lock.png");
     entry.image = Image("entry.png");
-    
+
     box.sprite = Sprite(box.image);
     box.x = Window.GetWidth()  / 2 - box.image.GetWidth ()/2;
     box.y = Window.GetHeight() / 2 - box.image.GetHeight()/2;
     box.z = 10000;
     box.sprite.SetPosition(box.x, box.y, box.z);
-    
+
     lock.sprite = Sprite(lock.image);
     lock.x = box.x + box.image.GetWidth()/2 - (lock.image.GetWidth() + entry.image.GetWidth()) / 2;
     lock.y = box.y + box.image.GetHeight()/2 - lock.image.GetHeight()/2;
     lock.z = box.z + 1;
     lock.sprite.SetPosition(lock.x, lock.y, lock.z);
-    
+
     entry.sprite = Sprite(entry.image);
     entry.x = lock.x + lock.image.GetWidth();
     entry.y = box.y + box.image.GetHeight()/2 - entry.image.GetHeight()/2;
     entry.z = box.z + 1;
     entry.sprite.SetPosition(entry.x, entry.y, entry.z);
-    
+
     global.dialog.box = box;
     global.dialog.lock = lock;
     global.dialog.entry = entry;
     global.dialog.bullet_image = Image("bullet.png");
     dialog_opacity (1);
   }
-    
+
 fun dialog_opacity(opacity)
   {
     dialog.box.sprite.SetOpacity (opacity);
@@ -251,10 +258,6 @@ fun system_update_callback (progress) {
 
 # Default state
 #
-if (Plymouth.GetMode() == "boot") {
-    hide_logo();
-}
-
 hide_progress();
 hide_spinner();
 
@@ -262,17 +265,14 @@ hide_spinner();
 fun boot_callback (duration, progress) {
 
     if (Plymouth.GetMode() == "boot") {
-        show_logo(1);
         hide_progress();
         show_spinner();
     }
     else if (Plymouth.GetMode() == "shutdown") {
-        show_logo(0);
         hide_progress();
-        hide_spinner();
+        show_spinner();
     }
     else if (Plymouth.GetMode() == "updates") {
-        show_logo(0);
         show_progress();
         hide_spinner();
     }
@@ -319,7 +319,7 @@ fun find_number (string) {
 
     index = 0;
     while (String(string).CharAt(index)) {
-    
+
         char = String(string).CharAt(index);
         int = -1;
         for (i=0; i<=9; i++) {
@@ -400,7 +400,7 @@ fun show_text(text) {
     } else {
         second_line.sprite = Sprite();
     }
-    
+
     first_line.sprite.SetImage(first_line.image);
 
     first_line.sprite.SetX( Window.GetWidth() * message_h_alignment - first_line.image.GetWidth()  / 2);
@@ -410,8 +410,8 @@ fun show_text(text) {
 fun message_callback (text)
 {
     #########################################################
-    ## HACK -   find updates progress within the message. 
-    ## 
+    ## HACK -   find updates progress within the message.
+    ##
     ## TODO -   Use Plymouth.SetSystemUpdateFunction instead
     ##          but it requires plymouth v0.9.5 or later.
     ##

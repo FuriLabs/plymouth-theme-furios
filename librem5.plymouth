@@ -1,8 +1,0 @@
-[Plymouth Theme]
-Name=Librem5
-Description=A Theme for the Librem 5 phone
-ModuleName=script
-
-[script]
-ImageDir=/usr/share/plymouth/themes/librem5
-ScriptFile=/usr/share/plymouth/themes/librem5/librem5.script

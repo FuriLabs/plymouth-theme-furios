@@ -1,20 +1,23 @@
-Source: plymouth-theme-librem5
+Source: mobian-plymouth-theme
 Section: misc
 Priority: optional
-Maintainer: Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>
-Build-Depends: debhelper (>= 9)
-Standards-Version: 3.9.6
-Homepage: https://source.puri.sm/Librem5/plymouth-theme-librem5
+Maintainer: Arnaud Ferraris <arnaud.ferraris@gmail.com>
+Build-Depends: debhelper-compat (= 12)
+Standards-Version: 4.5.0
+Rules-Requires-Root: no
+Vcs-Git: https://gitlab.com/mobian1/mobian-plymouth-theme.git
+Vcs-Browser: https://gitlab.com/mobian1/mobian-plymouth-theme
 
-Package: plymouth-theme-librem5
+Package: mobian-plymouth-theme
 Architecture: all
 Depends:
  ${misc:Depends},
  ${shlibs:Depends},
  plymouth,
+ plymouth-label,
 Provides:
  plymouth-theme,
-Description: boot animation, logger and I/O multiplexer - Librem 5 theme
+Description: boot animation, logger and I/O multiplexer - Mobian theme
  Plymouth provides a boot-time I/O multiplexing framework - the most obvious
  use for which is to provide an attractive graphical animation in place of
  the text messages that normally get shown during boot. (The messages are
@@ -22,4 +25,4 @@ Description: boot animation, logger and I/O multiplexer - Librem 5 theme
  boot systems Plymouth can also usefully handle user interaction such as
  password prompts for encrypted file systems.
  .
- This package provides the default Librem 5 theme.
+ This package provides the default Mobian theme.
