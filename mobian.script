@@ -7,7 +7,7 @@ logo_fade_delay         = 0;
 logo_fade_duration      = 20;
 
 progress_h_alignment    = 0.5;
-progress_v_alignment    = 0.53;
+progress_v_alignment    = 0.7;
 
 progress_fade_delay      = 20;
 progress_fade_duration   = 20;
