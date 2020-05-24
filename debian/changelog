@@ -1,3 +1,9 @@
+mobian-plymouth-theme (1.2) unstable; urgency=medium
+
+  * mobian.script: improve position of progress bar
+
+ -- Arnaud Ferraris <arnaud.ferraris@gmail.com>  Mon, 25 May 2020 01:45:43 +0200
+
 mobian-plymouth-theme (1.1) unstable; urgency=medium
 
   * mobian.script: lower position of progress bar
