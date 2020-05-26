@@ -1,3 +1,9 @@
+mobian-plymouth-theme (1.3) unstable; urgency=medium
+
+  * logo: use new mobian logo
+
+ -- Arnaud Ferraris <arnaud.ferraris@gmail.com>  Tue, 26 May 2020 16:13:03 +0200
+
 mobian-plymouth-theme (1.2) unstable; urgency=medium
 
   * mobian.script: improve position of progress bar
