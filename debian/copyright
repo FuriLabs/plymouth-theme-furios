@@ -1,14 +1,14 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: mobian-plymouth-theme
-Upstream-Contact: Arnaud Ferraris <arnaud.ferraris@gmail.com>
-Source: https://gitlab.com/mobian1/mobian-plymouth-theme
+Upstream-Name: plymouth-theme-droidian
+Upstream-Contact: Eugenio Paolantonio (g7) <me@medesimo.eu>
+Source: https://github.com/droidian/plymouth-theme-droidian
 
 Files:
- logo.png
+ droidian_logo.png
+ droidian_logo_glowing.png
 Copyright:
  1999 Software in the Public Interest, Inc.
- 2020 Oscar Domingo
- 2020 Arnaud Ferraris <arnaud.ferraris@gmail.com>
+ 2021 Droidian Project
 License: LGPL-3+
  This package is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -27,11 +27,12 @@ License: LGPL-3+
  Public License version 2 can be found in "/usr/share/common-licenses/GPL-2".
 
 Files:
- mobian.*
+ droidian.*
  debian/*
 Copyright:
  2020 Purism, SPC
  2020 Arnaud Ferraris <arnaud.ferraris@gmail.com>
+ 2021 Eugenio Paolantonio (g7) <me@medesimo.eu>
 License: GPL-3+
 
 Files: *

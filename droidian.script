@@ -28,11 +28,11 @@ message_font_size       = 18; # In pixels
 
 #----------------------------------------- Logo --------------------------------
 
-unscaled_logo = Image("logo.png");
+unscaled_logo = Image("droidian_logo.png");
 
 window_max.width = Window.GetX() * 2 + Window.GetWidth();
 window_max.height = Window.GetY() * 2 + Window.GetHeight();
-logo_scale_factor = window_max.width / unscaled_logo.GetWidth();
+logo_scale_factor = (window_max.width / unscaled_logo.GetWidth()) * 0.5;
 
 logo.image = unscaled_logo.Scale(unscaled_logo.GetWidth() * logo_scale_factor,
                                  unscaled_logo.GetHeight() * logo_scale_factor);
@@ -40,6 +40,17 @@ logo.sprite = Sprite(logo.image);
 
 logo.sprite.SetX( Window.GetWidth() * logo_h_alignment -    logo.image.GetWidth()  / 2);
 logo.sprite.SetY( Window.GetHeight() * logo_v_alignment -   logo.image.GetHeight() / 2);
+logo.sprite.SetZ(-10); # Keep below
+
+unscaled_glowing_logo = Image("droidian_logo_glowing.png");
+glowing_logo.image = unscaled_glowing_logo.Scale(unscaled_glowing_logo.GetWidth() * logo_scale_factor,
+                                                 unscaled_glowing_logo.GetHeight() * logo_scale_factor);
+glowing_logo.sprite = Sprite(glowing_logo.image);
+
+glowing_logo.sprite.SetX( Window.GetWidth() * logo_h_alignment -    glowing_logo.image.GetWidth()  / 2);
+glowing_logo.sprite.SetY( Window.GetHeight() * logo_v_alignment -   glowing_logo.image.GetHeight() / 2);
+glowing_logo.sprite.SetZ(10); # Keep above
+glowing_logo.sprite.SetOpacity(0); # Ensure it's hidden
 
 logo_time = 0;
 logo_opacity = 0;
@@ -64,51 +75,27 @@ fun hide_logo() {
     logo_time = 0;
     logo_opacity = 0;
     logo.sprite.SetOpacity(logo_opacity);
-}
-
-#----------------------------------------- Spinner --------------------------------
-
-for (i = 0; i < 30; i++)
-  spinner.images[i] = Image("spinner-" + i + ".png");
-
-spinner.sprite = Sprite();
-
-spinner.sprite.SetX( Window.GetWidth() * spinner_h_alignment -    spinner.images[0].GetWidth()  / 2);
-spinner.sprite.SetY( Window.GetHeight() * spinner_v_alignment -   spinner.images[0].GetHeight() / 2);
-
-
-fun refresh_spinner() {
-    spinner.sprite.SetImage(spinner.images[Math.Int(progress / 2) % 30]);
-}
-
-spinner_time = 0;
-spinner_opacity = 0;
-fun show_spinner() {
-    if (spinner_time < spinner_fade_delay) {
-        spinner_time ++;
-    }
-    else {
-        if (spinner_opacity < spinner_max_opacity) {
-            spinner_opacity = spinner_opacity + spinner_max_opacity/spinner_fade_duration;
-        }
-        spinner.sprite.SetOpacity(spinner_opacity);
-    }
-}
-
-fun hide_spinner() {
-    spinner_time = 0;
-    spinner_opacity = 0;
-    spinner.sprite.SetOpacity(spinner_opacity);
+    glowing_logo.sprite.SetOpacity(logo_opacity);
 }
 
 #----------------------------------------- Refresh --------------------------------
 
-progress = 0;
-fun refresh_callback ()
-  {
-    progress++;
-    refresh_spinner();
-  }
+glow_animation = 0;
+reverse = 0;
+fun refresh_callback() {
+    if (glow_animation == 40) {
+        reverse = 1;
+    } else if (glow_animation == 0) {
+        reverse = 0;
+    }
+
+    if (reverse == 1) {
+        glow_animation --;
+    } else {
+        glow_animation ++;
+    }
+    glowing_logo.sprite.SetOpacity(glow_animation * 0.025);
+}
 
 Plymouth.SetRefreshFunction (refresh_callback);
 
@@ -259,23 +246,17 @@ fun system_update_callback (progress) {
 # Default state
 #
 hide_progress();
-hide_spinner();
-
 
 fun boot_callback (duration, progress) {
 
     if (Plymouth.GetMode() == "boot") {
         hide_progress();
-        show_spinner();
     }
     else if (Plymouth.GetMode() == "shutdown") {
         hide_progress();
-        show_text("Shutting down");
-        show_spinner();
     }
     else if (Plymouth.GetMode() == "updates") {
         show_progress();
-        hide_spinner();
     }
 }
 

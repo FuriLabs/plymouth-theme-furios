@@ -21,7 +21,7 @@ case "$1" in
     configure)
 	update-alternatives \
 		--install /usr/share/plymouth/themes/default.plymouth default.plymouth \
-		/usr/share/plymouth/themes/mobian/mobian.plymouth 90
+		/usr/share/plymouth/themes/droidian/droidian.plymouth 90
 
 	if which update-initramfs >/dev/null 2>&1
 	then
