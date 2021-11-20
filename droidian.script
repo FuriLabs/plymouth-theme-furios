@@ -316,9 +316,18 @@ fun find_number (string) {
 }
 
 fun split_in_two_lines (text) {
-    # get the length of the text
+    # get the length of the text and how many
+    # spaces are there (do not use string_length
+    # to avoid looping yet another time)
     #
-    length = string_length(text);
+    length = 0;
+    nb_spaces = 0;
+    while (String(text).CharAt(length)) {
+        if (String(text).CharAt(length) == " ") {
+            nb_spaces++;
+        }
+        length++;
+    }
 
     # Passed the half of the string, replace the first space with a new line.
     #
@@ -327,11 +336,15 @@ fun split_in_two_lines (text) {
 
     half = Math.Int(length / 2);
     nb_new_lines = 0;
+    nb_found_spaces = 0;
 
     index = 0;
     while (String(text).CharAt(index)) {
         char = String(text).CharAt(index);
-        if (index > half && nb_new_lines < 1 && char == " ") {
+        if (char == " ") {
+            nb_found_spaces++;
+        }
+        if ((index > half || nb_found_spaces == nb_spaces) && nb_new_lines < 1 && char == " ") {
             nb_new_lines++;
         }
         else {
