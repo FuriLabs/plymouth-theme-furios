@@ -3,3 +3,6 @@ debian/.debhelper
 debian/mobian-plymouth-theme
 debian/files
 debian/debhelper-build-stamp
+
+# Added by Droidian
+!.circleci/
