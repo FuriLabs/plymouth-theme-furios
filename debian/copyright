@@ -1,14 +1,13 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: plymouth-theme-droidian
-Upstream-Contact: Eugenio Paolantonio (g7) <me@medesimo.eu>
-Source: https://github.com/droidian/plymouth-theme-droidian
+Upstream-Name: plymouth-theme-furios
+Upstream-Contact: Bardia Moshiri <fakeshell@bardia.tech>
+Source: https://github.com/furilabs/plymouth-theme-furios
 
 Files:
- droidian_logo.png
- droidian_logo_glowing.png
+ furios_logo.png
+ furios_logo_glowing.png
 Copyright:
- 1999 Software in the Public Interest, Inc.
- 2021 Droidian Project
+ 2024 Furi Labs
 License: LGPL-3+
  This package is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -27,12 +26,13 @@ License: LGPL-3+
  Public License version 2 can be found in "/usr/share/common-licenses/GPL-2".
 
 Files:
- droidian.*
+ furios.*
  debian/*
 Copyright:
  2020 Purism, SPC
  2020 Arnaud Ferraris <arnaud.ferraris@gmail.com>
  2021 Eugenio Paolantonio (g7) <me@medesimo.eu>
+ 2024 Bardia Moshiri <fakeshell@bardia.tech>
 License: GPL-3+
 
 Files: *
