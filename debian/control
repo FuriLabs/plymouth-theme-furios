@@ -2,8 +2,8 @@ Source: plymouth-theme-furios
 Section: misc
 Priority: optional
 Maintainer: Bardia Moshiri <fakeshell@bardia.tech>
-Build-Depends: debhelper-compat (= 12)
-Standards-Version: 4.5.0
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.7.0
 Rules-Requires-Root: no
 Vcs-Git: https://github.com/furilabs/plymouth-theme-furios.git
 Vcs-Browser: https://github.com/furilabs/plymouth-theme-furios
